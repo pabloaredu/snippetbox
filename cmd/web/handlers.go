@@ -17,10 +17,19 @@ func (app *App) Home(w http.ResponseWriter, r *http.Request) {
 func (app *App) ShowSnippet(w http.ResponseWriter, r *http.Request) { 
 	id, err := strconv.Atoi(r.URL.Query().Get("id"))
 	if err != nil || id < 1 {
-		app.NotFound(w) 
+		app.NotFound(w)
 		return
 	}
-	fmt.Fprintf(w, "Display a specific snippet (ID %d)...", id)
+	snippet, err := app.Database.GetSnippet(id)
+	if err != nil {
+		app.ServerError(w, err)
+		return
+	}
+	if snippet == nil {
+		app.NotFound(w)
+		return
+	}
+	fmt.Fprint(w, snippet)
 }
 
 func (app *App) NewSnippet(w http.ResponseWriter, r *http.Request) {

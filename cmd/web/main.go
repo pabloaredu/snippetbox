@@ -4,6 +4,7 @@ import (
 	"flag"
 	"log"
 	"net/http"
+	"../../pkg/models"
 )
 
 func main() {
@@ -15,6 +16,7 @@ func main() {
 	flag.Parse()
 
 	app := &App {
+		Database: &models.Database{},
 		HTMLDir: *htmlDir,
 		StaticDir: *staticDir,
 	}
