@@ -1,7 +1,7 @@
 package main
 
 import (
-	"../../pkg/models"
+	"snippetbox.org/pkg/models"
 )
 
 type App struct {

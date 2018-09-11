@@ -4,7 +4,8 @@ import (
 	"flag"
 	"log"
 	"net/http"
-	"../../pkg/models"
+	"snippetbox.org/pkg/models"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
